@@ -10,4 +10,4 @@ const { argv } = options({
   .help()
   .alias('help', 'h');
 
-generate(argv.file, cwd());
+generate(cwd(), argv.file);
