@@ -17,7 +17,7 @@ export const generate = (cwd, path) => {
     process.exit(1);
   }
 
-  let outPath = path.match(/(?<=(?:\.\/)?)\w[\w\-/]*\/(?=\.env)/);
+  let outPath = path.match(/[.\w\-/]*\/(?=\.env)/);
   outPath = outPath ? `${outPath}/` : '';
   const mappedTypes = variables.map((v, i, arr) => {
     if (i === arr.length - 1) return `${v}: string;`;
