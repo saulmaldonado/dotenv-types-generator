@@ -1,4 +1,5 @@
 import babel from '@rollup/plugin-babel';
+import shebang from 'rollup-plugin-preserve-shebang';
 
 export default {
   input: 'index.js',
@@ -8,6 +9,6 @@ export default {
       file: 'build/index.js',
     },
   ],
-  external: ['yargs'],
-  plugins: [babel({ babelHelpers: 'bundled' })],
+  external: ['yargs', 'fs'],
+  plugins: [babel({ babelHelpers: 'bundled' }), shebang()],
 };
