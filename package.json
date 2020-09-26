@@ -5,6 +5,7 @@
   "main": "index.js",
   "repository": "https://github.com/saulmaldonado/dotenv-types-generator",
   "author": "Saul Maldonado",
+  "bin": "./build/index.js",
   "license": "MIT",
   "scripts": {
     "lint": "eslint --fix",
