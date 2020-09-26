@@ -1,0 +1,42 @@
+{
+  "name": "dotenv-types-generator",
+  "version": "1.0.0",
+  "description": "Generates type declarations for your .env file",
+  "main": "index.js",
+  "repository": "https://github.com/saulmaldonado/dotenv-types-generator",
+  "author": "Saul Maldonado",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint --fix",
+    "prettier": "prettier --write",
+    "format": "yarn lint && yarn prettier",
+    "test": "jest",
+    "start": "yarn build && node build/index.js",
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "yargs": "^16.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@rollup/plugin-babel": "^5.2.1",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-import": "^2.22.0",
+    "husky": ">=4",
+    "lint-staged": ">=10",
+    "prettier": "^2.1.2",
+    "rollup": "^2.28.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix",
+    "*.{js,css,md}": "prettier --write"
+  }
+}
