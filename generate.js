@@ -11,7 +11,7 @@ export const generate = (cwd, path) => {
 
   const variables = file.toString().match(/(?<=\s*)\w+(?==)/gm);
   try {
-    if (!variables.length) throw new Error();
+    if (!variables) throw new Error();
   } catch {
     console.error('Empty .env file');
     process.exit(1);

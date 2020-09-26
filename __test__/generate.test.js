@@ -52,7 +52,7 @@ describe('.env type declaration generator', () => {
 
     it('should fail for empty .env files', () => {
       expect(() => {
-        generate(cwd, './example-dir/.env.empty');
+        generate(cwd, './.env.empty');
       }).toThrow();
     });
   });
