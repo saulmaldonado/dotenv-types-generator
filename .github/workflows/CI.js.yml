@@ -22,4 +22,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn --frozen-lockfile
       - run: yarn build
-      - run: npm test
+      - run: yarn link
+      - run: yarn link dotenv-types-generator
+      - run: yarn test
