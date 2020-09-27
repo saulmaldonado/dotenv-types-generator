@@ -3,8 +3,18 @@
   "version": "1.0.0",
   "description": "Generates type declarations for your .env file",
   "main": "index.js",
-  "repository": "https://github.com/saulmaldonado/dotenv-types-generator",
-  "author": "Saul Maldonado",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saulmaldonado/dotenv-types-generator.git"
+  },
+  "keywords": [
+    "typescript",
+    ".env",
+    "dotenv",
+    "cli",
+    "types"
+  ],
+  "author": "Saul Maldonado <samaldonado4@gmail.com>",
   "bin": "./build/index.js",
   "license": "MIT",
   "scripts": {
@@ -13,7 +23,7 @@
     "format": "yarn lint && yarn prettier",
     "test": "jest",
     "start": "yarn build && dotenv-types-generator",
-    "build": "rollup -c"
+    "build": "rollup -c && chmod +x build/index.js"
   },
   "dependencies": {
     "yargs": "^16.0.3"

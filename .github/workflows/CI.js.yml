@@ -24,5 +24,5 @@ jobs:
       - run: yarn build
       - run: yarn link
       - run: yarn link dotenv-types-generator
-      - run: chmod +x ./build/index.js
-      - run: yarn test
+      - run: yarn test --coverage
+      - run: bash <(curl -s https://codecov.io/bash)
