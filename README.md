@@ -19,7 +19,7 @@
 
 [dotenv-types-generator](https://github.com/saulmaldonado/dotenv-types-generator) is a command line tool for automatically generating type declarations files (.d.ts) for your .env files
 
-### Get the benefits of a strongly type .env file
+### Get the benefits of a strongly typed .env file
 
 ![demo](./dotenv-types-generator.gif)
 
