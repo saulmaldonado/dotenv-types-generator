@@ -6,8 +6,8 @@
   <a href='https://codecov.io/gh/saulmaldonado/dotenv-types-generator' target='_blank'>
     <img alt="Code Coverage" src="https://img.shields.io/codecov/c/github/saulmaldonado/dotenv-types-generator" />
   </a>
-  <a href='https://codecov.io/gh/saulmaldonado/dotenv-types-generator' target='_blank'>
-    <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href='https://www.npmjs.com/package/dotenv-types-generator' target='_blank'>
+    <img alt="Version" src="https://img.shields.io/npm/v/dotenv-types-generator" />
   </a>
   <a href="https://github.com/saulmaldonado/dotenv-types-generator/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
