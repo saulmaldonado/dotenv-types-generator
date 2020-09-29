@@ -21,7 +21,7 @@
 
 ### Get the benefits of a strongly typed .env file
 
-![demo](./dotenv-types-generator.gif)
+![demo](https://i.imgur.com/wrIZMUi.gif)
 
 ## Getting Started
 
