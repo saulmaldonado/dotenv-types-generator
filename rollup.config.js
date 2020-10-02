@@ -2,7 +2,7 @@ import babel from '@rollup/plugin-babel';
 import shebang from 'rollup-plugin-preserve-shebang';
 
 export default {
-  input: 'index.js',
+  input: 'build/index.js',
   output: [
     {
       format: 'cjs',
