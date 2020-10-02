@@ -1,6 +1,6 @@
 > ## ⚠ Refrain from spamming PRs
 >
-> Hacktoberfast PRs are encouraged. Any PRs that are automated, disruptive, hindering or clearly an attempt for a +1 will be marked as "spam" and "invalid" [https://hacktoberfest.digitalocean.com/details](https://hacktoberfest.digitalocean.com/details)
+> Hacktoberfest PRs are encouraged. Any PRs that are automated, disruptive, hindering or clearly an attempt for a +1 will be marked as "spam" and "invalid" [https://hacktoberfest.digitalocean.com/details](https://hacktoberfest.digitalocean.com/details)
 
 Contributions are always welcome, no matter how large or small!
 
