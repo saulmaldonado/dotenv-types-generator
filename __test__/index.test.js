@@ -17,8 +17,8 @@ const snapshotFile = `declare global {
   }
 }
   
-export {}
-  `;
+export {};
+`;
 
 const exampleEnv = `API_KEY=123456789
 API_KEY2=987654321`;

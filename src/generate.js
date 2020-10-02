@@ -33,7 +33,7 @@ export const generate = (cwd, path) => {
 }
   
 export {};
-  `;
+`;
 
   writeFileSync(`${cwd}/${outPath}env.d.ts`, typeDeclaration);
 
