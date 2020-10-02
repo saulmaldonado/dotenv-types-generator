@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to dotenv-types-generator 👨‍💻</h1>
+<h1 align="center">dotenv-types-generator 👨‍💻</h1>
 <p>
   <a href="https://github.com/saulmaldonado/dotenv-types-generator" target="_blank">
     <img alt="CI Build" src="https://img.shields.io/github/workflow/status/saulmaldonado/dotenv-types-generator/CI" />
@@ -11,9 +11,6 @@
   </a>
   <a href="https://github.com/saulmaldonado/dotenv-types-generator/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-  </a>
-  <a href="https://twitter.com/saul_mal" target="_blank">
-    <img alt="Twitter: saul_mal" src="https://img.shields.io/twitter/follow/saul_mal.svg?style=social" />
   </a>
 </p>
 
@@ -49,7 +46,7 @@ yarn dlx dotenv-types-generator -f [path/to/file/.env]
 |              **help** | `--help`                     | `-h`                     |
 |           **version** | `--version`                  | `-v`                     |
 
-## Install
+## Development installation
 
 ```sh
 git clone https://github.com/saulmaldonado/dotenv-types-generator.git
@@ -75,12 +72,16 @@ yarn test
 npm run test
 ```
 
-## Author
+## Contribute
+
+Issues and PRs are welcome!
+See [CONTRIBUTING.md](https://github.com/saulmaldonado/dotenv-types-generator/blob/master/CONTRIBUTING.md)
+
+## Contributors
 
 👤 **Saul Maldonado**
 
 - Website: https://saulmaldonado.tech/
-- Twitter: [@saul_mal](https://twitter.com/saul_mal)
 - Github: [@saulmaldonado](https://github.com/saulmaldonado)
 - LinkedIn: [@saulmaldonado4](https://linkedin.com/in/saulmaldonado4)
 
@@ -89,5 +90,3 @@ npm run test
 Give a ⭐️ if this project helped you!
 
 ---
-
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
