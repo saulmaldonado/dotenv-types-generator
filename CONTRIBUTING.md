@@ -4,7 +4,7 @@
 
 Contributions are always welcome, no matter how large or small!
 
-# First Time Contributors
+# First Time Open Source Contributors
 
 Don't know where to start? Watch this online course!
 [https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
@@ -19,6 +19,9 @@ Don't know where to start? Watch this online course!
 6. If needed, write tests using Jest
 7. Test your changes, ensure 100% code coverage (`npm test --coverage`)
 8. Push and [Create new Pull Request](https://help.github.com/articles/creating-a-pull-request/)
+
+## Yargs
+We use Yargs to build the CLI tool. If you wish to add options or extensions, familiarize yourself with building CLI tools with Yargs [https://github.com/yargs/yargs](https://github.com/yargs/yargs)
 
 ## Testing
 
