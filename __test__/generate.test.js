@@ -1,17 +1,40 @@
-import { readFileSync, unlinkSync } from 'fs';
+import { unlinkSync, writeFileSync, mkdirSync, rmdirSync } from 'fs';
 import process from 'process';
 import { generate } from '../src/generate';
+
+const snapshotFile = `declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      API_KEY: string;
+      API_KEY2: string;
+    }
+  }
+}
+  
+export {};
+  `;
+
+const exampleEnv = `API_KEY=123456789
+API_KEY2=987654321`;
 
 describe('.env type declaration generator', () => {
   let originalFile;
   const cwd = `${process.cwd()}/__test__`;
 
+  // creates a new file containing the expected contents
   beforeAll(() => {
-    originalFile = readFileSync('__test__/env.d.ts');
+    originalFile = Buffer.from(snapshotFile);
+    writeFileSync('__test__/.env', exampleEnv);
+    writeFileSync('__test__/.env.empty', '');
+    mkdirSync('__test__/example-dir');
+    writeFileSync('__test__/example-dir/.env', exampleEnv, '');
   });
 
   afterAll(() => {
-    unlinkSync('__test__/example-dir/env.d.ts');
+    unlinkSync('__test__/env.d.ts');
+    unlinkSync('__test__/.env');
+    unlinkSync('__test__/.env.empty');
+    rmdirSync('__test__/example-dir', { recursive: true });
   });
 
   it('should output the expected file', () => {
