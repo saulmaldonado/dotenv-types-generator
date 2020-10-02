@@ -23,7 +23,7 @@
     "format": "yarn lint && yarn prettier",
     "pretest": "yarn build",
     "test": "jest",
-    "test:CI": "test --coverage",
+    "test:CI": "yarn test --coverage",
     "start": "yarn build && dotenv-types-generator",
     "build": "rollup -c && chmod +x build/index.js"
   },
