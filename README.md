@@ -79,11 +79,9 @@ See [CONTRIBUTING.md](https://github.com/saulmaldonado/dotenv-types-generator/bl
 
 ## Contributors
 
-👤 **Saul Maldonado**
-
-- Website: https://saulmaldonado.tech/
-- Github: [@saulmaldonado](https://github.com/saulmaldonado)
-- LinkedIn: [@saulmaldonado4](https://linkedin.com/in/saulmaldonado4)
+<a href="https://github.com/saulmaldonado/dotenv-types-generator/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=saulmaldonado/dotenv-types-generator" />
+</a>
 
 ## Show your support
 

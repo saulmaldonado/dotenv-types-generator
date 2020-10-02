@@ -72,7 +72,7 @@ describe('command line tool', () => {
   });
 
   it('should generate env.d.ts with optional types', () => {
-    let optionalFile = Buffer.from(optionalTypesFile);
+    const optionalFile = Buffer.from(optionalTypesFile);
     childProcess.execSync(`dotenv-types-generator -o`);
     const buffer = readFileSync(`./env.d.ts`);
 

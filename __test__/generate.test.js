@@ -68,7 +68,7 @@ describe('.env type declaration generator', () => {
   });
 
   it('should output the expected file with optional types', () => {
-    let optionalFile = Buffer.from(optionalTypesFile);
+    const optionalFile = Buffer.from(optionalTypesFile);
     const buffer = generate(cwd, '.env', true);
     expect(buffer).toEqual(optionalFile);
   });
