@@ -20,6 +20,18 @@ const snapshotFile = `declare global {
 export {};
 `;
 
+const optionalTypesFile = `declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      API_KEY?: string;
+      API_KEY2?: string;
+    }
+  }
+}
+  
+export {};
+`;
+
 const exampleEnv = `API_KEY=123456789
 API_KEY2=987654321`;
 
@@ -57,5 +69,13 @@ describe('command line tool', () => {
     const buffer = readFileSync(`./${randomDirName}/env.d.ts`);
 
     expect(buffer).toEqual(originalFile);
+  });
+
+  it('should generate env.d.ts with optional types', () => {
+    let optionalFile = Buffer.from(optionalTypesFile);
+    childProcess.execSync(`dotenv-types-generator -o`);
+    const buffer = readFileSync(`./env.d.ts`);
+
+    expect(buffer).toEqual(optionalFile);
   });
 });
