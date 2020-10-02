@@ -14,6 +14,18 @@ const snapshotFile = `declare global {
 export {};
 `;
 
+const optionalTypesFile = `declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      API_KEY?: string;
+      API_KEY2?: string;
+    }
+  }
+}
+  
+export {};
+`;
+
 const exampleEnv = `API_KEY=123456789
 API_KEY2=987654321`;
 
@@ -53,6 +65,12 @@ describe('.env type declaration generator', () => {
     const buffer = generate(cwd, './example-dir/.env');
 
     expect(buffer).toEqual(originalFile);
+  });
+
+  it('should output the expected file with optional types', () => {
+    let optionalFile = Buffer.from(optionalTypesFile);
+    const buffer = generate(cwd, '.env', true);
+    expect(buffer).toEqual(optionalFile);
   });
 
   describe('edge case tests', () => {

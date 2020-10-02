@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs';
 
-export const generate = (cwd, path) => {
+export const generate = (cwd, path, shouldOutputOptionalTypes = false) => {
   let file;
   try {
     file = readFileSync(`${cwd}/${path}`);
@@ -20,8 +20,9 @@ export const generate = (cwd, path) => {
   let outPath = path.match(/[.\w\-/]*\/(?=\.env)/);
   outPath = outPath ? `${outPath}/` : '';
   const mappedTypes = variables.map((v, i, arr) => {
-    if (i === arr.length - 1) return `${v}: string;`;
-    return `${v}: string;\n`;
+    const variable = `${v}${shouldOutputOptionalTypes ? '?' : ''}: string;`;
+    if (i === arr.length - 1) return `${variable}`;
+    return `${variable}\n`;
   });
 
   const typeDeclaration = `declare global {
