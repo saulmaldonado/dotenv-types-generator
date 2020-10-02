@@ -1,6 +1,6 @@
 import { readFileSync, unlinkSync } from 'fs';
 import process from 'process';
-import { generate } from '../generate';
+import { generate } from '../src/generate';
 
 describe('.env type declaration generator', () => {
   let originalFile;
