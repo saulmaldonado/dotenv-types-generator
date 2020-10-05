@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
+import { printTypes } from './type-printer';
 
-export const generate = (cwd, path, shouldOutputOptionalTypes = false) => {
+export const generate = (cwd, path, shouldOutputOptionalTypes = false, indentationSize = 2) => {
   let file;
   try {
     file = readFileSync(`${cwd}/${path}`);
@@ -18,23 +19,13 @@ export const generate = (cwd, path, shouldOutputOptionalTypes = false) => {
   }
 
   let outPath = path.match(/[.\w\-/]*\/(?=\.env)/);
-  outPath = outPath ? `${outPath}/` : '';
+  outPath = outPath ? `${outPath}/` : '';  
   const mappedTypes = variables.map((v, i, arr) => {
-    const variable = `${v}${shouldOutputOptionalTypes ? '?' : ''}: string;`;
-    if (i === arr.length - 1) return `${variable}`;
-    return `${variable}\n`;
+    const variable = `${v}${shouldOutputOptionalTypes ? '?' : ''}: string;`;    
+    return variable;
   });
 
-  const typeDeclaration = `declare global {
-  namespace NodeJS {
-    interface ProcessEnv {
-      ${mappedTypes.join('      ')}
-    }
-  }
-}
-  
-export {};
-`;
+  const typeDeclaration = printTypes(indentationSize, mappedTypes);
 
   writeFileSync(`${cwd}/${outPath}env.d.ts`, typeDeclaration);
 

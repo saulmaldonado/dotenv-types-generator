@@ -2,29 +2,27 @@ import { unlinkSync, writeFileSync, mkdirSync, rmdirSync } from 'fs';
 import process from 'process';
 import { generate } from '../src/generate';
 
-const snapshotFile = `declare global {
-  namespace NodeJS {
-    interface ProcessEnv {
-      API_KEY: string;
-      API_KEY2: string;
-    }
-  }
-}
-  
-export {};
-`;
+const snapshotFile = 'declare global {\n' +
+'  namespace NodeJS {\n' +
+'    interface ProcessEnv {\n' +
+'      API_KEY: string;\n' +
+'      API_KEY2: string;\n' +
+'    }\n' +
+'  }\n' +
+'}\n' +
+'\n' +
+'export {};\n';
 
-const optionalTypesFile = `declare global {
-  namespace NodeJS {
-    interface ProcessEnv {
-      API_KEY?: string;
-      API_KEY2?: string;
-    }
-  }
-}
-  
-export {};
-`;
+const optionalTypesFile = 'declare global {\n' +
+'  namespace NodeJS {\n' +
+'    interface ProcessEnv {\n' +
+'      API_KEY?: string;\n' +
+'      API_KEY2?: string;\n' +
+'    }\n' +
+'  }\n' +
+'}\n' +
+'\n' +
+'export {};\n';
 
 const exampleEnv = `API_KEY=123456789
 API_KEY2=987654321`;
@@ -51,7 +49,7 @@ describe('.env type declaration generator', () => {
 
   it('should output the expected file', () => {
     const buffer = generate(cwd, '.env');
-
+    
     expect(buffer).toEqual(originalFile);
   });
 
