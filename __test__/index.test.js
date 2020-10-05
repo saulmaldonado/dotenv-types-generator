@@ -8,27 +8,29 @@ import {
 import childProcess from 'child_process';
 import { randomBytes } from 'crypto';
 
-const snapshotFile = 'declare global {\n' +
-'  namespace NodeJS {\n' +
-'    interface ProcessEnv {\n' +
-'      API_KEY: string;\n' +
-'      API_KEY2: string;\n' +
-'    }\n' +
-'  }\n' +
-'}\n' +
-'\n' +
-'export {};\n';
+const snapshotFile =
+  'declare global {\n' +
+  '  namespace NodeJS {\n' +
+  '    interface ProcessEnv {\n' +
+  '      API_KEY: string;\n' +
+  '      API_KEY2: string;\n' +
+  '    }\n' +
+  '  }\n' +
+  '}\n' +
+  '\n' +
+  'export {};\n';
 
-const optionalTypesFile = 'declare global {\n' +
-'  namespace NodeJS {\n' +
-'    interface ProcessEnv {\n' +
-'      API_KEY?: string;\n' +
-'      API_KEY2?: string;\n' +
-'    }\n' +
-'  }\n' +
-'}\n' +
-'\n' +
-'export {};\n';
+const optionalTypesFile =
+  'declare global {\n' +
+  '  namespace NodeJS {\n' +
+  '    interface ProcessEnv {\n' +
+  '      API_KEY?: string;\n' +
+  '      API_KEY2?: string;\n' +
+  '    }\n' +
+  '  }\n' +
+  '}\n' +
+  '\n' +
+  'export {};\n';
 
 const exampleEnv = `API_KEY=123456789
 API_KEY2=987654321`;

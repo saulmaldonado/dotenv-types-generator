@@ -1,7 +1,12 @@
 import { readFileSync, writeFileSync } from 'fs';
-import { printTypes } from './type-printer';
+import { printTypes } from './printTypes';
 
-export const generate = (cwd, path, shouldOutputOptionalTypes = false, indentationSize = 2) => {
+export const generate = (
+  cwd,
+  path,
+  shouldOutputOptionalTypes = false,
+  indentationSize = 2
+) => {
   let file;
   try {
     file = readFileSync(`${cwd}/${path}`);
@@ -19,9 +24,10 @@ export const generate = (cwd, path, shouldOutputOptionalTypes = false, indentati
   }
 
   let outPath = path.match(/[.\w\-/]*\/(?=\.env)/);
-  outPath = outPath ? `${outPath}/` : '';  
-  const mappedTypes = variables.map((v, i, arr) => {
-    const variable = `${v}${shouldOutputOptionalTypes ? '?' : ''}: string;`;    
+  outPath = outPath ? `${outPath}/` : '';
+
+  const mappedTypes = variables.map((v) => {
+    const variable = `${v}${shouldOutputOptionalTypes ? '?' : ''}: string;`;
     return variable;
   });
 
