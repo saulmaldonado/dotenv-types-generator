@@ -26,6 +26,48 @@ const optionalTypesFile = `declare global {
 export {};
 `;
 
+const expectedIndentationSize4 = `declare global {
+    namespace NodeJS {
+        interface ProcessEnv {
+            API_KEY: string;
+            API_KEY2: string;
+        }
+    }
+}
+
+export {};
+`;
+
+const existingTypesFile = `declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      PWD: string;
+      EDITOR: string;
+      HOME: string;
+      NODE_ENV?: string;
+    }
+  }
+}
+
+export {};
+`;
+
+const expectedMergedFile = `declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      PWD: string;
+      EDITOR: string;
+      HOME: string;
+      NODE_ENV?: string;
+      API_KEY: string;
+      API_KEY2: string;
+    }
+  }
+}
+
+export {};
+`;
+
 const exampleEnv = `API_KEY=123456789
 API_KEY2=987654321`;
 
@@ -71,6 +113,21 @@ describe('.env type declaration generator', () => {
     const optionalFile = Buffer.from(optionalTypesFile);
     const buffer = generate(cwd, '.env', true);
     expect(buffer).toEqual(optionalFile);
+  });
+
+  it('should output the expected file with correct indentation: size 4', () => {
+    const indentationFile = Buffer.from(expectedIndentationSize4);
+    const buffer = generate(cwd, '.env', false, 4);
+
+    expect(buffer).toEqual(indentationFile);
+  });
+
+  it('should output the expected file with merged variables', () => {
+    writeFileSync('__test__/env.d.ts', existingTypesFile);
+
+    const mergedFile = Buffer.from(expectedMergedFile);
+    const buffer = generate(cwd, '.env', false, 2, true);
+    expect(buffer).toEqual(mergedFile);
   });
 
   describe('edge case tests', () => {

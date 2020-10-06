@@ -32,6 +32,48 @@ const optionalTypesFile = `declare global {
 export {};
 `;
 
+const expectedIndentationSize4 = `declare global {
+    namespace NodeJS {
+        interface ProcessEnv {
+            API_KEY: string;
+            API_KEY2: string;
+        }
+    }
+}
+
+export {};
+`;
+
+const existingTypesFile = `declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      PWD: string;
+      EDITOR: string;
+      HOME: string;
+      NODE_ENV?: string;
+    }
+  }
+}
+
+export {};
+`;
+
+const expectedMergedFile = `declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      PWD: string;
+      EDITOR: string;
+      HOME: string;
+      NODE_ENV?: string;
+      API_KEY: string;
+      API_KEY2: string;
+    }
+  }
+}
+
+export {};
+`;
+
 const exampleEnv = `API_KEY=123456789
 API_KEY2=987654321`;
 
@@ -77,5 +119,22 @@ describe('command line tool', () => {
     const buffer = readFileSync(`./env.d.ts`);
 
     expect(buffer).toEqual(optionalFile);
+  });
+
+  it('should generate env.d.ts with correct indentation: size 4', () => {
+    const indentationFile = Buffer.from(expectedIndentationSize4);
+    childProcess.execSync(`dotenv-types-generator -i 4`);
+    const buffer = readFileSync(`./env.d.ts`);
+
+    expect(buffer).toEqual(indentationFile);
+  });
+
+  it('should generate env.d.ts with merged types', () => {
+    writeFileSync('./env.d.ts', existingTypesFile);
+    const mergedFile = Buffer.from(expectedMergedFile);
+    childProcess.execSync(`dotenv-types-generator -m`);
+    const buffer = readFileSync(`./env.d.ts`);
+
+    expect(buffer).toEqual(mergedFile);
   });
 });

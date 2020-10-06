@@ -18,8 +18,21 @@ const { argv } = options({
     alias: 'i',
     description: 'Defines how the template should be indented',
   },
+  mergeTypes: {
+    type: 'boolean',
+    default: false,
+    alias: 'm',
+    description:
+      'Merges existing types from env.d.ts file with the types from .env file',
+  },
 })
   .help()
   .alias('help', 'h');
 
-generate(cwd(), argv.file, argv.optionalTypes, argv.indentationSize);
+generate(
+  cwd(),
+  argv.file,
+  argv.optionalTypes,
+  argv.indentationSize,
+  argv.mergeTypes
+);

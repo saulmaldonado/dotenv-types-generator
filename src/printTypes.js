@@ -25,7 +25,7 @@ export const printTypes = (indentationSize, mappedTypes) => {
 
     if (element.value === placeholderText) {
       mappedTypes.forEach((mappedType) => {
-        output += `${indentation}${mappedType}\n`;
+        output += `${indentation}${mappedType};\n`;
       });
     } else output += `${indentation}${element.value}`;
   });
