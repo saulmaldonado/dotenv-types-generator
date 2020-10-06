@@ -16,7 +16,7 @@ const snapshotFile = `declare global {
     }
   }
 }
-  
+
 export {};
 `;
 
@@ -28,7 +28,7 @@ const optionalTypesFile = `declare global {
     }
   }
 }
-  
+
 export {};
 `;
 
