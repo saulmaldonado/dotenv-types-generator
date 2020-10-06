@@ -53,8 +53,16 @@ describe('mergeTypes tests', () => {
     expect(result).toEqual(exampleMappedTypes);
   });
 
+  it('should return mapped types when env.d.ts file is invalid', () => {
+    writeFileSync(`${randomDirName}/env.d.ts`, 'invalid-file');
+    const result = mergeTypes(exampleMappedTypes, `${randomDirName}/env.d.ts`);
+    writeFileSync(`${randomDirName}/env.d.ts`, exampleEnvFile);
+    expect(result).toEqual(exampleMappedTypes);
+  });
+
   it('should merge types', () => {
     const result = mergeTypes(exampleMappedTypes, `${randomDirName}/env.d.ts`);
+
     expect(result).toEqual(exampleMergedTypes);
   });
 });
