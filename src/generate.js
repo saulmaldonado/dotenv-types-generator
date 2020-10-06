@@ -27,8 +27,7 @@ export const generate = (
   outPath = outPath ? `${outPath}/` : '';
 
   const mappedTypes = variables.map((v) => {
-    const variable = `${v}${shouldOutputOptionalTypes ? '?' : ''}: string;`;
-    return variable;
+    return `${v}${shouldOutputOptionalTypes ? '?' : ''}: string;`;
   });
 
   const typeDeclaration = printTypes(indentationSize, mappedTypes);
