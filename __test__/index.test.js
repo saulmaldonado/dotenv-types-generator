@@ -74,6 +74,34 @@ const expectedMergedFile = `declare global {
 export {};
 `;
 
+const expectedDefaultsFile = `declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      API_KEY: string;
+      API_KEY2: string;
+      NODE_ENV: string;
+      BABEL_ENV: string;
+      DEBUG: string;
+    }
+  }
+}
+
+export {};
+`;
+
+const expectedDefaultsWithoutDuplicatesFile = `declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      API_KEY: string;
+      API_KEY2: string;
+      DEBUG: string;
+    }
+  }
+}
+
+export {};
+`;
+
 const exampleEnv = `API_KEY=123456789
 API_KEY2=987654321`;
 
@@ -136,5 +164,23 @@ describe('command line tool', () => {
     const buffer = readFileSync(`./env.d.ts`);
 
     expect(buffer).toEqual(mergedFile);
+  });
+
+  it('should output the expected file with merged defaults', () => {
+    const defaultsFile = Buffer.from(expectedDefaultsFile);
+    childProcess.execSync(`dotenv-types-generator -d NODE_ENV BABEL_ENV DEBUG`);
+    const buffer = readFileSync(`./env.d.ts`);
+
+    expect(buffer).toEqual(defaultsFile);
+  });
+
+  it('should output the expected file with merged defaults without duplicates', () => {
+    const defaultsWithoutDuplicatesFile = Buffer.from(
+      expectedDefaultsWithoutDuplicatesFile
+    );
+    childProcess.execSync(`dotenv-types-generator -d API_KEY API_KEY2 DEBUG`);
+    const buffer = readFileSync(`./env.d.ts`);
+
+    expect(buffer).toEqual(defaultsWithoutDuplicatesFile);
   });
 });

@@ -25,6 +25,11 @@ const { argv } = options({
     description:
       'Merges existing types from env.d.ts file with the types from .env file',
   },
+  defaults: {
+    type: 'array',
+    alias: 'd',
+    description: 'Adds default process.env properties to template',
+  },
 })
   .help()
   .alias('help', 'h');
@@ -34,5 +39,6 @@ generate(
   argv.file,
   argv.optionalTypes,
   argv.indentationSize,
-  argv.mergeTypes
+  argv.mergeTypes,
+  argv.defaults
 );
