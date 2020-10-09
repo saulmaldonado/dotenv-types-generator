@@ -7,7 +7,8 @@ export const generate = (
   path,
   shouldOutputOptionalTypes = false,
   indentationSize = 2,
-  shouldMerge = false
+  shouldMerge = false,
+  defaults = []
 ) => {
   let file;
   try {
@@ -17,13 +18,17 @@ export const generate = (
     process.exit(1);
   }
 
-  const variables = file.toString().match(/(?<=\s*)\w+(?==)/gm);
+  let variables = file.toString().match(/(?<=\s*)\w+(?==)/gm);
   try {
     if (!variables) throw new Error();
   } catch {
     console.error('Empty .env file');
     process.exit(1);
   }
+
+  // merge defaults
+  variables = variables.concat(defaults);
+  variables = variables.filter((item, pos) => variables.indexOf(item) === pos);
 
   let outPath = path.match(/[.\w\-/]*\/(?=\.env)/);
   outPath = outPath ? `${outPath}/` : '';

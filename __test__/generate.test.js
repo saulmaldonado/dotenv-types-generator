@@ -26,6 +26,34 @@ const optionalTypesFile = `declare global {
 export {};
 `;
 
+const expectedDefaultsFile = `declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      API_KEY: string;
+      API_KEY2: string;
+      NODE_ENV: string;
+      BABEL_ENV: string;
+      DEBUG: string;
+    }
+  }
+}
+
+export {};
+`;
+
+const expectedDefaultsWithoutDuplicatesFile = `declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      API_KEY: string;
+      API_KEY2: string;
+      DEBUG: string;
+    }
+  }
+}
+
+export {};
+`;
+
 const expectedIndentationSize4 = `declare global {
     namespace NodeJS {
         interface ProcessEnv {
@@ -128,6 +156,24 @@ describe('.env type declaration generator', () => {
     const mergedFile = Buffer.from(expectedMergedFile);
     const buffer = generate(cwd, '.env', false, 2, true);
     expect(buffer).toEqual(mergedFile);
+  });
+
+  it('should output the expected file with merged defaults', () => {
+    const defaultsFile = Buffer.from(expectedDefaultsFile);
+    const defaults = ['NODE_ENV', 'BABEL_ENV', 'DEBUG'];
+    const buffer = generate(cwd, '.env', false, 2, false, defaults);
+
+    expect(buffer).toEqual(defaultsFile);
+  });
+
+  it('should output the expected file with merged defaults without duplicates', () => {
+    const defaultsWithoutDuplicatesFile = Buffer.from(
+      expectedDefaultsWithoutDuplicatesFile
+    );
+    const defaults = ['API_KEY', 'API_KEY2', 'DEBUG'];
+    const buffer = generate(cwd, '.env', false, 2, false, defaults);
+
+    expect(buffer).toEqual(defaultsWithoutDuplicatesFile);
   });
 
   describe('edge case tests', () => {
