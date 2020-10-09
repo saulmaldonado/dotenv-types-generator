@@ -40,11 +40,14 @@ yarn dlx dotenv-types-generator -f [path/to/file/.env]
 
 ## Options
 
-|                       | flag                         | alias                    |
-| --------------------: | ---------------------------- | ------------------------ |
-| **Path to .env file** | `--file [path/to/file/.env]` | `-f [path/to/file/.env]` |
-|              **help** | `--help`                     | `-h`                     |
-|           **version** | `--version`                  | `-v`                     |
+|                                         | flag                         | alias                    | default value |
+| --------------------------------------: | ---------------------------- | ------------------------ | ------------- |
+|                   **Path to .env file** | `--file [path/to/file/.env]` | `-f [path/to/file/.env]` | `./.env`      |
+|             **Optional/Nullable Types** | `--optionalTypes`            | `-o`                     | `false`       |
+| **Merge with existing `env.d.ts` file** | `--mergeTypes`               | `-m`                     | `false`       |
+|      **File Indentation Size (spaces)** | `--indentationSize`          | `-i`                     | `2`           |
+|                             **version** | `--version`                  | `-v`                     |               |
+|                                **help** | `--help`                     | `-h`                     |               |
 
 ## Development installation
 
