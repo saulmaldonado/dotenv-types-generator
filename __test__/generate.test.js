@@ -2,6 +2,7 @@ import { unlinkSync, writeFileSync, mkdirSync, rmdirSync } from 'fs';
 import process from 'process';
 import { generate } from '../src/generate';
 
+// Expected files
 const snapshotFile = `declare global {
   namespace NodeJS {
     interface ProcessEnv {
@@ -96,8 +97,24 @@ const expectedMergedFile = `declare global {
 export {};
 `;
 
+const expectedBase64File = `declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      PRIV_KEY: string;
+      PUB_KEY: string;
+    }
+  }
+}
+
+export {};
+`;
+
+// Input files
 const exampleEnv = `API_KEY=123456789
 API_KEY2=987654321`;
+
+const exampleBase64Env = `PRIV_KEY=aGVsbG93b3JsZA==
+PUB_KEY=aGVsbG93b3JsZA==`;
 
 describe('.env type declaration generator', () => {
   let originalFile;
@@ -107,6 +124,7 @@ describe('.env type declaration generator', () => {
   beforeAll(() => {
     originalFile = Buffer.from(snapshotFile);
     writeFileSync('__test__/.env', exampleEnv);
+    writeFileSync('__test__/.base64env', exampleBase64Env);
     writeFileSync('__test__/.env.empty', '');
     mkdirSync('__test__/example-dir');
     writeFileSync('__test__/example-dir/.env', exampleEnv, '');
@@ -116,6 +134,7 @@ describe('.env type declaration generator', () => {
     unlinkSync('__test__/env.d.ts');
     unlinkSync('__test__/.env');
     unlinkSync('__test__/.env.empty');
+    unlinkSync('__test__/.base64env');
     rmdirSync('__test__/example-dir', { recursive: true });
   });
 
@@ -174,6 +193,13 @@ describe('.env type declaration generator', () => {
     const buffer = generate(cwd, '.env', false, 2, false, defaults);
 
     expect(buffer).toEqual(defaultsWithoutDuplicatesFile);
+  });
+
+  it('should output the expected file with base64 values', () => {
+    const expectedBase64FileBuffer = Buffer.from(expectedBase64File);
+    const buffer = generate(cwd, '.base64env');
+
+    expect(buffer).toEqual(expectedBase64FileBuffer);
   });
 
   describe('edge case tests', () => {
