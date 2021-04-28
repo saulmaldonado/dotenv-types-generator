@@ -102,8 +102,24 @@ const expectedDefaultsWithoutDuplicatesFile = `declare global {
 export {};
 `;
 
+const expectedBase64File = `declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      PRIV_KEY: string;
+      PUB_KEY: string;
+    }
+  }
+}
+
+export {};
+`;
+
+// Input files
 const exampleEnv = `API_KEY=123456789
 API_KEY2=987654321`;
+
+const exampleBase64Env = `PRIV_KEY=aGVsbG93b3JsZA==
+PUB_KEY=aGVsbG93b3JsZA==`;
 
 describe('command line tool', () => {
   let originalFile;
@@ -182,5 +198,15 @@ describe('command line tool', () => {
     const buffer = readFileSync(`./env.d.ts`);
 
     expect(buffer).toEqual(defaultsWithoutDuplicatesFile);
+  });
+
+  it('should output the expected file from base64 values', () => {
+    writeFileSync('.env', exampleBase64Env);
+    const expectedBase64FileBuffer = Buffer.from(expectedBase64File);
+
+    childProcess.execSync('dotenv-types-generator');
+    const buffer = readFileSync('./env.d.ts');
+
+    expect(buffer).toEqual(expectedBase64FileBuffer);
   });
 });

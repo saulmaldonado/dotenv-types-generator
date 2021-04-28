@@ -17,8 +17,7 @@ export const generate = (
     console.error('invalid path to .env file');
     process.exit(1);
   }
-
-  let variables = file.toString().match(/(?<=\s*)\w+(?==)/gm);
+  let variables = file.toString().match(/(?<=^\s*)\w+(?==.+$)/gm);
   try {
     if (!variables) throw new Error();
   } catch {
